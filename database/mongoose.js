@@ -1,11 +1,10 @@
-import mongoose from "mongoose";
-import dotenv from "dotenv";
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
 dotenv.config();
 const DB = process.env.DB_CLUSTER_ADRESS;
 
 const connectDB = () => {
-  console.log(DB);
   mongoose
     .connect(DB, {
       useNewUrlParser: true,
@@ -14,7 +13,7 @@ const connectDB = () => {
       useUnifiedTopology: true,
     })
     .then(() => {
-      console.log("DB connection succesfull!");
+      console.log('DB connection succesfull!');
     })
     .catch((err) => console.log(err));
 };

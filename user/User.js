@@ -1,23 +1,27 @@
-import pkg from "mongoose";
+import pkg from 'mongoose';
 const { Schema, model } = pkg;
 
 const UserSchema = new Schema({
-  departmentName: String,
-  username: String,
-  role: String,
-  email: { type: String, unique: true },
+  departmentName: { type: String, required: true },
+  username: { type: String, required: true },
+  role: {
+    type: String,
+    required: true,
+    enum: ['user', 'superuser', 'admin'],
+  },
+  email: { type: String, unique: true, required: true },
   hashedPassword: { type: String, select: false },
   phoneNumber: String,
   address: {
-    country: String,
-    city: String,
-    street: String,
-    house: String,
-    postalCode: String,
+    country: { type: String, required: true },
+    city: { type: String, required: true },
+    street: { type: String, required: true },
+    house: { type: String, required: true },
+    postalCode: { type: String, required: true },
   },
   createdAt: { type: String, default: new Date().toISOString() },
 });
 
-const User = model("User", UserSchema);
+const User = model('User', UserSchema);
 
 export default User;
