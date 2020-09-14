@@ -1,0 +1,16 @@
+{
+  "departmentName": "Gdańsk",
+  "username": "Jan Kowalski",
+  "email": "jan.kowalski@gmail.com",
+  "role": "user",
+  "hashedPassword": "abc12345",
+  "phoneNumber": "500 100 200",
+  "address": {
+    "country": "Polska",
+    "city": "Gdańsk",
+    "street": "Grunwaldzka",
+    "house": "10/5",
+    "postalCode": "82-100"
+  },
+  "createdAt": "2020-09-12T14:45:02.252Z"
+}

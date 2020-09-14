@@ -1,8 +1,10 @@
-import { Schema, model } from 'mongoose';
+import pkg from "mongoose";
+const { Schema, model } = pkg;
 
 const UserSchema = new Schema({
   departmentName: String,
   username: String,
+  role: String,
   email: { type: String, unique: true },
   hashedPassword: { type: String, select: false },
   phoneNumber: String,
@@ -16,4 +18,6 @@ const UserSchema = new Schema({
   createdAt: { type: String, default: new Date().toISOString() },
 });
 
-export const UserModel = model('User', UserSchema);
+const User = model("User", UserSchema);
+
+export default User;
