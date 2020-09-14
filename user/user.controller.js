@@ -1,28 +1,20 @@
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import pkg from 'express-validator';
-import User from './User.js';
-import { userService } from './user.service.js';
-const { check, validationResult } = pkg;
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import User from "./User.js";
+import { userService } from "./user.service.js";
 
 export const authenticate = async (req, res, next) => {
   const { email, password } = req.body;
-  check(email, 'Invalid email adress').isEmail();
-  check(password, 'No password provided').exists();
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
 
   try {
-    const user = await User.findOne({ email }, '+hashedPassword');
+    const user = await User.findOne({ email }, "+hashedPassword");
     if (!user) {
-      return res.status(400).json({ msg: 'Invalid username or password' });
+      return res.status(400).json({ msg: "Invalid username or password 1st" });
     }
     const passwordCorrect = await bcrypt.compare(password, user.hashedPassword);
 
     if (!passwordCorrect) {
-      return res.status(400).json({ msg: 'Invalid username or password' });
+      return res.status(400).json({ msg: "Invalid username or password 2nd" });
     }
 
     const { hashedPassword, ...rest } = user;
@@ -61,10 +53,10 @@ export const getSingleUser = async (req, res, next) => {
 
   // only allow admins to access other user records
   if (
-    (id !== currentUser._id && currentUser.role !== 'admin') ||
-    currentUser.role !== 'superUser'
+    (id !== currentUser._id && currentUser.role !== "admin") ||
+    currentUser.role !== "superUser"
   ) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    return res.status(401).json({ message: "Unauthorized" });
   }
 
   try {
@@ -80,7 +72,7 @@ export const registerUser = async (req, res, next) => {
     req.body.hashedPassword = await bcrypt.hash(req.body.hashedPassword, 10);
     const newUser = await User.create({ ...req.body });
     const { hashedPassword, ...rest } = newUser;
-    res.send(rest);
+    res.send(rest._dec);
   } catch (err) {
     next(err);
   }

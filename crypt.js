@@ -1,6 +1,9 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from "bcryptjs";
 
-const crypt = (psw) => {
-  bcrypt.hash(psw, 10).then((res) => console.log(res));
+const crypt = async (psw) => {
+  const salt = await bcrypt.genSalt(10);
+
+  const crypted = await bcrypt.hash(psw, salt);
+  console.log(crypted);
 };
-crypt('Abc123456');
+crypt("Abc123456");

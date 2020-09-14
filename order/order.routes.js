@@ -1,20 +1,23 @@
-import Router from 'express';
-import authorize from '../utils/authorize.js';
+import Router from "express";
+import authorize from "../utils/authorize.js";
 import {
   getUsersOrders,
   createNewOrder,
   setStatus,
   deleteOrder,
-} from './order.controller.js';
+  getAllOrders,
+} from "./order.controller.js";
 
 const router = Router();
 
-router.get('/orders', authorize(), getUsersOrders);
+router.get("/orders", authorize(), getUsersOrders);
 
-router.post('/', authorize(), createNewOrder);
+router.get("/all", authorize(["admin", "superUser"]), getAllOrders);
 
-router.patch('/', authorize(['admin', 'superUser']), setStatus);
+router.post("/", authorize(), createNewOrder);
 
-router.delete('/', authorize(['admin', 'superUser']), deleteOrder);
+router.patch("/", authorize(["admin", "superUser"]), setStatus);
+
+router.delete("/", authorize(["admin", "superUser"]), deleteOrder);
 
 export default router;
