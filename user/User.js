@@ -1,4 +1,4 @@
-import pkg from 'mongoose';
+import pkg from "mongoose";
 const { Schema, model } = pkg;
 
 const UserSchema = new Schema({
@@ -7,7 +7,7 @@ const UserSchema = new Schema({
   role: {
     type: String,
     required: true,
-    enum: ['user', 'superuser', 'admin'],
+    enum: ["user", "superuser", "admin"],
   },
   email: { type: String, unique: true, required: true },
   hashedPassword: { type: String, select: false },
@@ -19,9 +19,10 @@ const UserSchema = new Schema({
     house: { type: String, required: true },
     postalCode: { type: String, required: true },
   },
+  limit: { type: Number, default: 0 },
   createdAt: { type: String, default: new Date().toISOString() },
 });
 
-const User = model('User', UserSchema);
+const User = model("User", UserSchema);
 
 export default User;

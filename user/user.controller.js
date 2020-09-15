@@ -30,7 +30,7 @@ export const authenticate = async (req, res, next) => {
       { expiresIn: 36000 },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({ token, user });
       }
     );
   } catch (err) {
@@ -40,7 +40,7 @@ export const authenticate = async (req, res, next) => {
 
 export const getAllUsers = async (req, res, next) => {
   try {
-    const users = await User.find();
+    const users = await User.find({ role: "user" });
     res.send(users);
   } catch (err) {
     next(err);
