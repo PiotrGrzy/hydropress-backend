@@ -1,4 +1,4 @@
-import pkg from "mongoose";
+import pkg from 'mongoose';
 const { Schema, model } = pkg;
 
 const OrderSchema = new Schema({
@@ -7,13 +7,14 @@ const OrderSchema = new Schema({
     {
       itemId: { type: String, required: true },
       count: { type: Number, required: true },
-      value: { type: Number, required: true },
+      price: { type: Number, required: true },
     },
   ],
-  isSend: Boolean,
+  value: Number,
+  isSend: { type: Boolean, default: false },
   createdAt: { type: String, default: new Date().toISOString() },
 });
 
-const Order = model("Order", OrderSchema);
+const Order = model('Order', OrderSchema);
 
 export default Order;
