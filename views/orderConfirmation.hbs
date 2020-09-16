@@ -1,0 +1,16 @@
+<div class="wrapper">
+    <h1>Potwierdzenie zamówienia</h1>
+    <span>Zamówienie nr: {{id}}</span>
+    <h3>Dziękujemy za złożenie zamówienia</h3>
+    <ul>
+        {{#each items}}
+        <li>ID:{{this.itemId}} cena: {{this.price}} ilość: {{this.count}}</li>
+        {{/each}}
+    </ul>
+    <h3>Dane skladającego zamówienie:</h3>
+    <p>Imię i Nazwisko: {{userName}}</p>
+    <p>Email: {{userEmail}}</p>
+    <p>Oddział: {{department}}</p>
+
+
+</div>
