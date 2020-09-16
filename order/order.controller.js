@@ -1,4 +1,5 @@
-import Order from "./Order.js";
+import Order from './Order.js';
+import { sendConfirmationEmails } from '../email/email.services.js';
 
 export const getUsersOrders = async (req, res, next) => {
   try {
@@ -20,10 +21,14 @@ export const getAllOrders = async (req, res, next) => {
 
 export const createNewOrder = async (req, res, next) => {
   if (req.body.userId !== req.user._id) {
-    res.status(401).send("Unauthorized");
+    res.status(401).send('Unauthorized');
   }
+  const { hashedPassword, ...rest } = req.user;
+  const userData = rest;
+
   try {
     const newOrder = await Order.create({ ...req.body });
+    sendConfirmationEmails(newOrder, userData);
     res.send(newOrder);
   } catch (err) {
     next(err);
@@ -44,7 +49,7 @@ export const setStatus = async (req, res, next) => {
 export const deleteOrder = async (req, res, next) => {
   try {
     await Order.findByIdAndDelete(req.params.id);
-    res.status(200).send("Order deleted");
+    res.status(200).send('Order deleted');
   } catch (err) {
     next(err);
   }
