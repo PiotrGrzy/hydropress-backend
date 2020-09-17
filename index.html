@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:v="urn:schemas-microsoft-com:vml"
+>
+  <head>
+    <!--[if gte mso 9
+      ]><xml
+        ><o:OfficeDocumentSettings
+          ><o:AllowPNG /><o:PixelsPerInch
+            >96</o:PixelsPerInch
+          ></o:OfficeDocumentSettings
+        ></xml
+      ><!
+    [endif]-->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="width=device-width" name="viewport" />
+    <!--[if !mso]><!-->
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <!--<![endif]-->
+    <title></title>
+    <!--[if !mso]><!-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!--<![endif]-->
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      * {
+        line-height: inherit;
+      }
+
+      a[x-apple-data-detectors="true"] {
+        color: inherit !important;
+        text-decoration: none !important;
+      }
+    </style>
+    <style type="text/css">
+      .wrapper {
+        text-align: center;
+        max-width: 90%;
+        margin: 0 auto;
+        font-size: 18px;
+      }
+    </style>
+    <style type="text/css">
+      table {
+        width: 80%;
+        margin: 20px auto;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        vertical-align: top;
+      }
+
+      th,
+      td {
+        padding: 15px;
+        text-align: left;
+      }
+
+      #t01 tr:nth-child(even) {
+        background-color: #eee;
+      }
+
+      #t01 tr:nth-child(odd) {
+        background-color: #fff;
+      }
+
+      #t01 th {
+        background-color: rgb(78, 76, 76);
+        background-color: #925354;
+        color: white;
+      }
+
+      header,
+      footer {
+        padding: 20px;
+        font-size: 22px;
+      }
+    </style>
+  </head>
+
+  <body
+    class="clean-body"
+    style="
+      margin: 0;
+      padding: 0;
+      -webkit-text-size-adjust: 100%;
+      background-color: #ffffff;
+    "
+  >
+    <div class="wrapper">
+      <header>
+        <img
+          src="https://www.datocms-assets.com/34127/1600263791-logo.jpg"
+          alt="logo"
+          width="320"
+        />
+        <h2>Potwierdzenie zamówienia</h2>
+        <span>Zamówienie nr: 218389891284214434</span>
+      </header>
+
+      <table id="t01">
+        <tr>
+          <th>Zamawiąjący</th>
+          <th>Telefon</th>
+          <th>Oddział</th>
+        </tr>
+        <tr>
+          <td><a mail href="mailto:jan.kowalski@gamil.com">Jan Kowalski</a></td>
+          <td>559300600</td>
+          <td>Gdańsk</td>
+        </tr>
+      </table>
+
+      <table id="t01">
+        <tr>
+          <th>Artykuł</th>
+          <th>Ilość (szt)</th>
+          <th>Cena (zł netto)</th>
+        </tr>
+        {{#each items}}
+        <tr>
+          <td>{{this.itemId}}</td>
+          <td>{{this.count}}</td>
+          <td>{{this.price}}</td>
+        </tr>
+        {{/each}}
+        <tr>
+          <td>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+            veritatis veniam expedita?
+          </td>
+          <td>Jackson</td>
+          <td>94</td>
+        </tr>
+        <tr>
+          <td>John</td>
+          <td>Doe</td>
+          <td>80</td>
+        </tr>
+        <tr>
+          <th colspan="2">Suma zamówienia</th>
+          <th>35660</th>
+        </tr>
+      </table>
+      <table id="t01">
+        <tr>
+          <th colspan="2">Adres dostawy</th>
+        </tr>
+
+        <tr>
+          <td>Kraj</td>
+          <td>Polska</td>
+        </tr>
+        <tr>
+          <td>Miasto</td>
+          <td>Gdańsk</td>
+        </tr>
+        <tr>
+          <td>Ulica</td>
+          <td>Grunwaldzka 36</td>
+        </tr>
+        <tr>
+          <td>Kod pocztowy</td>
+          <td>80-116</td>
+        </tr>
+      </table>
+      <h3>Dziękujemy za złożenie zamówienia</h3>
+      <footer>
+        <h4>
+          Agencja Promocyjna WENA s.c. Jolanta Łyszkowska-Socha i Tomasz Socha
+        </h4>
+        <p>Polska, Gdańsk 80-172 Gdańsk ul. Morenowa 11</p>
+        <p>Tel: 58 347 94 51</p>
+        <p>Fax: 58 348 76 71</p>
+        <p>Email <a href="mailto:wena@wena.net.pl">wena@wena.net.pl</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -10,7 +10,6 @@ const __dirname = path.resolve();
 export const sendConfirmationEmails = async (order, userData) => {
   console.log(userData);
   console.log(order);
-  const { address, email, username, departmentName } = userData;
   const transporter = nodemailer.createTransport({
     host: "wena.nazwa.pl",
     auth: {
@@ -28,27 +27,20 @@ export const sendConfirmationEmails = async (order, userData) => {
     },
     extName: ".hbs",
     viewPath: "views",
-    //  handlebars: allowInsecurePrototypeAccess(Handlebars),
   };
 
   transporter.use("compile", hbs(options));
 
   const emailOptions = {
     from: "hydropress@wena.net.pl",
-    to: email,
+    to: userData.email,
     cc: "marek.warzone@gmail.com",
     subject: `Potwierdzenie złożenia zamówienia nr: ${order._id}`,
     template: "orderConfirmation",
     context: {
-      userName: username,
-      userEmail: email,
-      department: departmentName,
-      country: address.country,
-      city: address.city,
-      street: address.street,
-      house: address.house,
-      code: address.postalCode,
-      items: order.items,
+      user: userData,
+      order: order,
+      address: userData.address,
     },
   };
 

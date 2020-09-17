@@ -1,16 +1,86 @@
 <div class="wrapper">
-    <h1>Potwierdzenie zamówienia</h1>
-    <span>Zamówienie nr: {{id}}</span>
-    <h3>Dziękujemy za złożenie zamówienia</h3>
-    <ul>
-        {{#each items}}
-        <li>ID:{{this.itemId}} cena: {{this.price}} ilość: {{this.count}}</li>
+    <header>
+        <img src="https://www.datocms-assets.com/34127/1600263791-logo.jpg" alt="logo" width="320" />
+        <h2>Potwierdzenie zamówienia</h2>
+        <span>Zamówienie nr: 218389891284214434</span>
+    </header>
+
+    <table id="t01">
+        <tr>
+            <th>Zamawiąjący</th>
+            <th>Telefon</th>
+            <th>Oddział</th>
+        </tr>
+        <tr>
+            <td><a mail href="mailto:{{user.email}}">{{user.username}}</a></td>
+            <td>{{user.phoneNumber}}</td>
+            <td>{{user.departmentName}}</td>
+        </tr>
+    </table>
+
+    <table id="t01">
+        <tr>
+            <th>Artykuł</th>
+            <th>Ilość (szt)</th>
+            <th>Cena (zł netto)</th>
+        </tr>
+        {{#each order.items}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.count}}</td>
+            <td>{{this.price}}</td>
+        </tr>
         {{/each}}
-    </ul>
-    <h3>Dane skladającego zamówienie:</h3>
-    <p>Imię i Nazwisko: {{userName}}</p>
-    <p>Email: {{userEmail}}</p>
-    <p>Oddział: {{department}}</p>
+        <tr>
+            <th colspan="2">Suma zamówienia</th>
+            <th>35660</th>
+        </tr>
+    </table>
+    <table id="t01">
+        <tr>
+            <th colspan="2">Adres dostawy</th>
+        </tr>
+
+        <tr>
+            <td>Kraj</td>
+            <td>{{address.country}}</td>
+        </tr>
+        <tr>
+            <td>Miasto</td>
+            <td>{{address.city}}</td>
+        </tr>
+        <tr>
+            <td>Ulica</td>
+            <td>{{address.street}} {{address.house}}</td>
+        </tr>
+        <tr>
+            <td>Kod pocztowy</td>
+            <td>{{address.postalCode}}</td>
+        </tr>
+    </table>
+    {{#if order.adnotation}}
+    <table id="t01">
+        <tr>
+            <th>Uwagi do Zamówienie</th>
+
+        </tr>
+        <tr>
+            <td>{{order.adnotation}}</td>
+
+        </tr>
+    </table>
+
+    {{/if}}
 
 
+    <h3>Dziękujemy za złożenie zamówienia</h3>
+    <footer>
+        <h4>
+            Agencja Promocyjna WENA s.c. Jolanta Łyszkowska-Socha i Tomasz Socha
+        </h4>
+        <p>Polska, Gdańsk 80-172 Gdańsk ul. Morenowa 11</p>
+        <p>Tel: 58 347 94 51</p>
+        <p>Fax: 58 348 76 71</p>
+        <p>Email <a href="mailto:wena@wena.net.pl">wena@wena.net.pl</a></p>
+    </footer>
 </div>
