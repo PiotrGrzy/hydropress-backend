@@ -24,9 +24,11 @@ export const sendConfirmationEmails = async (order, userData) => {
       partialsDir: __dirname + "/views/partials",
       layoutsDir: __dirname + "/views/layouts",
       extname: ".hbs",
+      handlebars: allowInsecurePrototypeAccess(Handlebars),
     },
     extName: ".hbs",
     viewPath: "views",
+    //  handlebars: allowInsecurePrototypeAccess(Handlebars),
   };
 
   transporter.use("compile", hbs(options));
@@ -34,7 +36,8 @@ export const sendConfirmationEmails = async (order, userData) => {
   const emailOptions = {
     from: "hydropress@wena.net.pl",
     to: email,
-    subject: "Potwierdzenie złożenia zamówienia nr: " + order._id,
+    cc: "marek.warzone@gmail.com",
+    subject: `Potwierdzenie złożenia zamówienia nr: ${order._id}`,
     template: "orderConfirmation",
     context: {
       userName: username,
