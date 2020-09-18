@@ -1,8 +1,9 @@
-import pkg from "mongoose";
+import pkg from 'mongoose';
 const { Schema, model } = pkg;
 
 const OrderSchema = new Schema({
   userId: { type: Schema.Types.ObjectId, required: true },
+  department: { type: String, required: true },
   items: [
     {
       itemId: { type: String, required: true },
@@ -17,6 +18,6 @@ const OrderSchema = new Schema({
   createdAt: { type: String, default: new Date().toISOString() },
 });
 
-const Order = model("Order", OrderSchema);
+const Order = model('Order', OrderSchema);
 
 export default Order;
