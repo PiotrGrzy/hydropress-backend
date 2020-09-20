@@ -2,8 +2,11 @@ import Order from './Order.js';
 import { sendConfirmationEmails } from '../email/email.services.js';
 
 export const getUsersOrders = async (req, res, next) => {
+  if (req.params.id !== req.user._id) {
+    res.status(401).send('Unauthorized');
+  }
   try {
-    const orders = await Order.find({ userId: req.body.userId });
+    const orders = await Order.find({ userId: req.params.id });
     res.send(orders);
   } catch (err) {
     next(err);
@@ -37,7 +40,7 @@ export const createNewOrder = async (req, res, next) => {
 
 export const setStatus = async (req, res, next) => {
   try {
-    const updatedOrder = await Order.findByIdAndUpdate(req.params.id, {
+    const updatedOrder = await Order.findByIdAndUpdate(req.body.id, {
       isSend: req.body.isSend,
     });
     res.status(200).json(updatedOrder);
@@ -48,7 +51,7 @@ export const setStatus = async (req, res, next) => {
 
 export const deleteOrder = async (req, res, next) => {
   try {
-    await Order.findByIdAndDelete(req.params.id);
+    await Order.findByIdAndRemove(req.body.id);
     res.status(200).send('Order deleted');
   } catch (err) {
     next(err);

@@ -71,8 +71,8 @@ export const registerUser = async (req, res, next) => {
   try {
     req.body.hashedPassword = await bcrypt.hash(req.body.hashedPassword, 10);
     const newUser = await User.create({ ...req.body });
-    const { hashedPassword, ...rest } = newUser;
-    res.send(rest._dec);
+    const { hashedPassword, rest } = newUser;
+    res.send(rest);
   } catch (err) {
     next(err);
   }
