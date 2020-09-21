@@ -6,6 +6,7 @@ import {
   getSingleUser,
   registerUser,
   updateUserLimit,
+  setUserLimit,
 } from './user.controller.js';
 
 const router = Router();
@@ -25,6 +26,10 @@ router.get('/users/:id', authorize(), getSingleUser);
 // update limit
 
 router.patch('/limit/:id', authorize(), updateUserLimit);
+
+// set limit
+
+router.patch('/setlimit/:id', authorize(['superUser', 'admin']), setUserLimit);
 
 // register user only for admin
 
