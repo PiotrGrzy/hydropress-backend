@@ -12,12 +12,12 @@ const router = Router();
 
 router.get('/user/:id', authorize(), getUsersOrders);
 
-router.get('/all', authorize(['admin', 'superUser']), getAllOrders);
+router.get('/all', authorize(['admin', 'superuser']), getAllOrders);
 
 router.post('/', authorize(), createNewOrder);
 
-router.patch('/', authorize(['admin', 'superUser']), setStatus);
+router.patch('/', authorize(['admin']), setStatus);
 
-router.delete('/', authorize(['admin', 'superUser']), deleteOrder);
+router.delete('/', authorize(['admin']), deleteOrder);
 
 export default router;

@@ -17,7 +17,7 @@ router.post('/login', authenticate);
 
 // list all users, only for admin and superuser
 
-router.get('/users', authorize(['superUser', 'admin']), getAllUsers);
+router.get('/users', authorize(['superuser', 'admin']), getAllUsers);
 
 // get single user data only for logged in users
 
@@ -29,10 +29,10 @@ router.patch('/limit/:id', authorize(), updateUserLimit);
 
 // set limit
 
-router.patch('/setlimit/:id', authorize(['superUser', 'admin']), setUserLimit);
+router.patch('/setlimit/:id', authorize(['superuser', 'admin']), setUserLimit);
 
 // register user only for admin
 
-router.post('/register', authorize(['superUser', 'admin']), registerUser);
+router.post('/register', authorize(['admin']), registerUser);
 
 export default router;

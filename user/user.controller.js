@@ -104,10 +104,10 @@ export const updateUserLimit = async (req, res, next) => {
 
 export const setUserLimit = async (req, res, next) => {
   const id = req.params.id;
-  // only allow admins to access other user records
-  if (req.user.role !== 'admin' && req.user.role !== 'superUser') {
-    return res.status(401).json({ message: 'Unauthorized' });
-  }
+  // only allow admins
+  // if (req.user.role !== 'admin' && req.user.role !== 'superUser') {
+  //   return res.status(401).json({ message: 'Unauthorized' });
+  // }
   try {
     const newLimit = req.body.limit;
     const newUserLimit = await User.findByIdAndUpdate(id, { limit: newLimit });

@@ -1,17 +1,15 @@
-import nodemailer from "nodemailer";
-import hbs from "nodemailer-express-handlebars";
-import path from "path";
-import Handlebars from "handlebars";
-import pkg from "@handlebars/allow-prototype-access";
+import nodemailer from 'nodemailer';
+import hbs from 'nodemailer-express-handlebars';
+import path from 'path';
+import Handlebars from 'handlebars';
+import pkg from '@handlebars/allow-prototype-access';
 const { allowInsecurePrototypeAccess } = pkg;
 
 const __dirname = path.resolve();
 
 export const sendConfirmationEmails = async (order, userData) => {
-  console.log(userData);
-  console.log(order);
   const transporter = nodemailer.createTransport({
-    host: "wena.nazwa.pl",
+    host: 'wena.nazwa.pl',
     auth: {
       user: process.env.APP_EMAIL,
       pass: process.env.APP_EMAIL_PASSWORD,
@@ -20,23 +18,23 @@ export const sendConfirmationEmails = async (order, userData) => {
 
   const options = {
     viewEngine: {
-      partialsDir: __dirname + "/views/partials",
-      layoutsDir: __dirname + "/views/layouts",
-      extname: ".hbs",
+      partialsDir: __dirname + '/views/partials',
+      layoutsDir: __dirname + '/views/layouts',
+      extname: '.hbs',
       handlebars: allowInsecurePrototypeAccess(Handlebars),
     },
-    extName: ".hbs",
-    viewPath: "views",
+    extName: '.hbs',
+    viewPath: 'views',
   };
 
-  transporter.use("compile", hbs(options));
+  transporter.use('compile', hbs(options));
 
   const emailOptions = {
-    from: "hydropress@wena.net.pl",
+    from: 'hydropress@wena.net.pl',
     to: userData.email,
-    cc: "marek.warzone@gmail.com",
+    cc: 'marek.warzone@gmail.com',
     subject: `Potwierdzenie złożenia zamówienia nr: ${order._id}`,
-    template: "orderConfirmation",
+    template: 'orderConfirmation',
     context: {
       user: userData,
       order: order,
@@ -48,6 +46,6 @@ export const sendConfirmationEmails = async (order, userData) => {
     if (error) {
       return console.log(error);
     }
-    console.log("Message sent: %s", info.messageId);
+    console.log('Message sent: %s', info.messageId);
   });
 };
