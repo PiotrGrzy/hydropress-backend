@@ -8,6 +8,7 @@ const { allowInsecurePrototypeAccess } = pkg;
 const __dirname = path.resolve();
 
 export const sendConfirmationEmails = async (order, userData) => {
+  console.log(order);
   const transporter = nodemailer.createTransport({
     host: 'wena.nazwa.pl',
     auth: {
@@ -32,7 +33,7 @@ export const sendConfirmationEmails = async (order, userData) => {
   const emailOptions = {
     from: 'hydropress@wena.net.pl',
     to: userData.email,
-    cc: 'marek.warzone@gmail.com',
+    cc: ['piotr.grzymowicz1@gmail.com', 'tomasz.socha@wena.net.pl'],
     subject: `Potwierdzenie złożenia zamówienia nr: ${order._id}`,
     template: 'orderConfirmation',
     context: {
