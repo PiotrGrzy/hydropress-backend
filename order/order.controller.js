@@ -41,7 +41,8 @@ export const createNewOrder = async (req, res, next) => {
 export const setStatus = async (req, res, next) => {
   try {
     const updatedOrder = await Order.findByIdAndUpdate(req.body.id, {
-      isSend: req.body.isSend,
+      isSend: true,
+      mailNum: req.body.mailNum,
     });
     res.status(200).json(updatedOrder);
   } catch (err) {

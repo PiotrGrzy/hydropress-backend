@@ -14,6 +14,7 @@ const OrderSchema = new Schema({
   ],
   value: Number,
   isSend: { type: Boolean, default: false },
+  mailNum: { type: String, default: '' },
   adnotation: String,
   createdAt: { type: String, default: new Date().toISOString() },
 });

@@ -33,7 +33,7 @@ export const sendConfirmationEmails = async (order, userData) => {
   const emailOptions = {
     from: 'hydropress@wena.net.pl',
     to: userData.email,
-    cc: ['piotr.grzymowicz1@gmail.com', 'tomasz.socha@wena.net.pl'],
+    cc: ['piotr.grzymowicz1@gmail.com'],
     subject: `Potwierdzenie złożenia zamówienia nr: ${order._id}`,
     template: 'orderConfirmation',
     context: {
