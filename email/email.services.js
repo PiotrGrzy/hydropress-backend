@@ -64,7 +64,7 @@ export const sendStatusUpdateEmail = async (order, mailNum) => {
     const emailOptions = {
       from: 'hydropress@wena.net.pl',
       to: user.email,
-      cc: ['piotr.grzymowicz1@gmail.com'],
+      cc: ['piotr.grzymowicz1@gmail.com', 'tomasz.socha@wena.net.pl'],
       subject: `Zmiana statusu zamówienia nr: ${order._id}`,
       template: 'orderSentConfirmation',
       context: {
