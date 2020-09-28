@@ -7,6 +7,7 @@ import {
   registerUser,
   updateUserLimit,
   setUserLimit,
+  pingServer,
 } from './user.controller.js';
 
 const router = Router();
@@ -34,5 +35,9 @@ router.patch('/setlimit/:id', authorize(['superuser', 'admin']), setUserLimit);
 // register user only for admin
 
 router.post('/register', authorize(['admin']), registerUser);
+
+// ping heroku server
+
+router.get('/ping', pingServer);
 
 export default router;

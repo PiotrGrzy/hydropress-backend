@@ -116,3 +116,7 @@ export const setUserLimit = async (req, res, next) => {
     next(err);
   }
 };
+
+export const pingServer = (req, res, next) => {
+  res.send('server ping!');
+};
