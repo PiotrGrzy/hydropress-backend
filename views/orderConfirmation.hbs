@@ -2,7 +2,7 @@
     <header>
         <img src="https://www.datocms-assets.com/34127/1600263791-logo.jpg" alt="logo" width="320" />
         <h2>Potwierdzenie zamówienia</h2>
-        <span>Zamówienie nr: 218389891284214434</span>
+        <span>Zamówienie nr: {{order._id}}</span>
     </header>
 
     <table id="t01">
@@ -55,7 +55,7 @@
         </tr>
         <tr>
             <td>Kod pocztowy</td>
-            <td>{{address.postalCode}}</td>
+            <td>{{address.zipCode}}</td>
         </tr>
     </table>
     {{#if order.adnotation}}

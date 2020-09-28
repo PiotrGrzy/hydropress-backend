@@ -1,5 +1,8 @@
 import Order from './Order.js';
-import { sendConfirmationEmails } from '../email/email.services.js';
+import {
+  sendConfirmationEmails,
+  sendStatusUpdateEmail,
+} from '../email/email.services.js';
 
 export const getUsersOrders = async (req, res, next) => {
   if (req.params.id !== req.user._id) {
@@ -31,7 +34,7 @@ export const createNewOrder = async (req, res, next) => {
 
   try {
     const newOrder = await Order.create({ ...req.body });
-    sendConfirmationEmails(newOrder, userData);
+    sendConfirmationEmails(newOrder, userData, req.body.diffAddress);
     res.send(newOrder);
   } catch (err) {
     next(err);
@@ -44,6 +47,7 @@ export const setStatus = async (req, res, next) => {
       isSend: true,
       mailNum: req.body.mailNum,
     });
+    sendStatusUpdateEmail(updatedOrder, req.body.mailNum);
     res.status(200).json(updatedOrder);
   } catch (err) {
     next(err);
